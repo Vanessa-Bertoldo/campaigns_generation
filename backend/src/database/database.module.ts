@@ -11,7 +11,7 @@ import { DatabaseHealthService } from './database-health.service';
       username: 'postgres',
       password: 'ng@mastermaq2010',
       database: 'campanha',
-      entities: [],
+      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
   ],

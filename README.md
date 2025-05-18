@@ -79,12 +79,20 @@ O arquivo de collection do Postman está localizado em:
 
 ## 🧪 Testes Unitários
 
-Rode o comando abaixo para executar os testes:
+Antes de rodar os testes, instale os pacotes necessários:
+```bash
+npm install --save-dev jest ts-jest @types/jest
+```
+
+> Esses pacotes são responsáveis por habilitar o Jest com suporte ao TypeScript.
+> Eles são instalados apenas em ambientes de desenvolvimento (não no Docker por padrão).
+
+Depois, rode:
 ```bash
 npm run test
 ```
 
-Resultado esperado: 
+Resultado esperado:
 
 <p align="center">
   <img src="https://github.com/Vanessa-Bertoldo/campaigns_generation/blob/main/backend/assets/tests.png" />

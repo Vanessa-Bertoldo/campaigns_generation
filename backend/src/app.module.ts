@@ -1,4 +1,3 @@
-import { ScheduleModule } from '@nestjs/schedule';
 import { Module, OnModuleInit } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -6,6 +5,7 @@ import { DatabaseModule } from './database/database.module';
 import { DatabaseHealthService } from './database/database-health.service';
 import { CampaignsModule } from './modules/campaings/campaigns.module';
 import { ConfigModule } from '@nestjs/config';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [

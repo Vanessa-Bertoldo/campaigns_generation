@@ -1,4 +1,3 @@
-﻿# campaigns_generation
 # 🚀 Como Rodar o Projeto – Campanhas API
 
 Este projeto é uma API RESTful construída com NestJS e TypeORM para gerenciar campanhas com criação, atualização, listagem, filtros e exclusão lógica.
@@ -7,17 +6,40 @@ Este projeto é uma API RESTful construída com NestJS e TypeORM para gerenciar 
 
 ## ✅ Requisitos
 
-- Node.js 18+
-- PostgreSQL
+- Docker e Docker Compose (recomendado)
+- Node.js 18+ (apenas se for rodar manualmente)
 - Yarn ou NPM
 
 ---
 
-## 📦 Instalação
+## 📦 Instalação via Docker (mais simples e recomendada)
 
 1. Clone o repositório:
 ```bash
 gh repo clone Vanessa-Bertoldo/campaigns_generation
+cd campaigns_generation
+```
+
+2. Suba a aplicação:
+```bash
+docker-compose up --build
+```
+
+> Isso iniciará:
+> - 🐘 PostgreSQL (com os dados de acesso do `.env.local`)
+> - 🚀 Backend NestJS rodando em `http://localhost:3000`
+
+---
+
+## 💡 Observação
+O arquivo `.env.local` **já está presente no repositório**, portanto **você não precisa criar ou configurar variáveis de ambiente manualmente.**
+
+---
+
+## 🧶 Instalação manual (opcional)
+
+1. Vá para a pasta `backend`:
+```bash
 cd backend
 ```
 
@@ -26,21 +48,13 @@ cd backend
 npm install
 ```
 
-3. Configure o arquivo `.env` na raiz do projeto:
-```env
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=sua_senha
-DB_NAME=campanha
-```
-
-4. Rode o banco (se for local) rode o projeto (as migrations serão aplicadas automaticamente):
+3. Rode o projeto:
 ```bash
-npm run build --caso prefira rodar as migrations manualmente
+npm run build
 npm run start
 ```
-ou para dev:
+
+ou em modo dev:
 ```bash
 npm run start:dev
 ```
@@ -73,7 +87,7 @@ npm run test
 Resultado esperado: 
 
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://github.com/Vanessa-Bertoldo/campaigns_generation/blob/main/backend/assets/tests.png" /></a>
+  <img src="https://github.com/Vanessa-Bertoldo/campaigns_generation/blob/main/backend/assets/tests.png" />
 </p>
 
 ---

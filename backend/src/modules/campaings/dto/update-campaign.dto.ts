@@ -5,6 +5,8 @@ import {
   IsDateString,
 } from 'class-validator';
 import { CampaignCategory, CampaignStatus } from '../entities/campanha.entity';
+import { IsFutureOrToday } from '../validators/is-future-or-today.validator';
+import { IsDateFinalLargerThanDataInicioValidation } from '../validators/is-date-fim-maior-que-inicio.validator';
 
 export class UpdateCampaignDto {
   @IsOptional()
@@ -13,11 +15,15 @@ export class UpdateCampaignDto {
 
   @IsOptional()
   @IsDateString()
-  dataInicio?: Date;
+  @IsFutureOrToday({ message: 'A data de início deve ser maior ou igual a data atual' })
+  dataInicio!: Date;
 
   @IsOptional()
   @IsDateString()
-  dataFim?: Date;
+  @IsDateFinalLargerThanDataInicioValidation({
+    message: 'A data final deve ser maior que a data de início',
+  })
+  dataFim!: Date;
 
   @IsOptional()
   @IsEnum(CampaignStatus)

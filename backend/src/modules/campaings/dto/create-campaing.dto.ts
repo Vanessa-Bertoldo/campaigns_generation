@@ -3,6 +3,7 @@ import {
   IsEnum,
   IsDateString,
   IsOptional,
+  IsBoolean,
 } from 'class-validator';
 
 import { CampaignCategory, CampaignStatus } from '../entities/campanha.entity';
@@ -16,6 +17,10 @@ export class CreateCampaignDto {
 
   @IsDateString()
   dataFim!: string;
+
+  @IsOptional()
+  @IsBoolean()
+  indexcluido: boolean = false;
 
   @IsOptional()
   @IsEnum(CampaignStatus)

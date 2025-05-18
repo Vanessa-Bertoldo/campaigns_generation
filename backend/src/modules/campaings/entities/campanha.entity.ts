@@ -34,6 +34,9 @@ export class Campaign {
   @Column({ type: 'timestamp' })
   dataFim!: Date;
 
+  @Column({ default: true })
+  indexcluido!: boolean;
+
   @Column({
     type: 'enum',
     enum: CampaignStatus,

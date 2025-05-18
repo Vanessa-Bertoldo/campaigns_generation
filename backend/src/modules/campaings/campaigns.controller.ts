@@ -8,11 +8,12 @@ import {
   Body,
   ParseIntPipe,
   HttpCode,
-  HttpStatus,
+  HttpStatus
 } from '@nestjs/common';
 import { CampaignsService } from './campaigns.service';
 import { UpdateCampaignDto } from './dto/update-campaign.dto';
 import { CreateCampaignDto } from './dto/create-campaing.dto';
+import { FilterCampaignDto } from './dto/filter-campaing.dto';
 
 @Controller('campaigns')
 export class CampaignsController {
@@ -31,6 +32,11 @@ export class CampaignsController {
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number) {
     return this.campaignsService.findOne(id);
+  }
+
+  @Post('buscar')
+  async buscarComFiltroPaginado(@Body() filters: FilterCampaignDto) {
+    return this.campaignsService.findByFiltersPaginated(filters);
   }
 
   @Patch(':id')

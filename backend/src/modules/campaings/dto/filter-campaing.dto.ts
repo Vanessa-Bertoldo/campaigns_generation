@@ -1,10 +1,15 @@
-import { IsOptional, IsString, IsDateString, IsNumber, Min } from 'class-validator';
+import { IsOptional, IsString, IsDateString, IsNumber, Min, IsEnum } from 'class-validator';
 import { Type } from 'class-transformer';
+import { CampaignStatus } from '../entities/campanha.entity';
 
 export class FilterCampaignDto {
   @IsOptional()
   @IsString()
   nome?: string;
+
+  @IsOptional()
+  @IsEnum(CampaignStatus)
+  status!: CampaignStatus;
 
   @IsOptional()
   @IsDateString()

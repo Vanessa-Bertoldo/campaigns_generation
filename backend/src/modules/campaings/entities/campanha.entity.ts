@@ -25,7 +25,10 @@ export class Campaign {
   @Column({ length: 255 })
   nome!: string;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ 
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP' 
+  })
   dataCadastro!: Date;
 
   @Column({ type: 'timestamp' })
@@ -34,7 +37,7 @@ export class Campaign {
   @Column({ type: 'timestamp' })
   dataFim!: Date;
 
-  @Column({ default: true })
+  @Column({ default: false })
   indexcluido!: boolean;
 
   @Column({

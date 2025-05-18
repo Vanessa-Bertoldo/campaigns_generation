@@ -24,8 +24,8 @@ export class CreateCampaignDto {
 
   @IsOptional()
   @IsEnum(CampaignStatus)
-  status!: CampaignStatus;
-
+  status: CampaignStatus = CampaignStatus.ATIVA;
+  
   @IsEnum(CampaignCategory)
   categoria!: CampaignCategory;
 }

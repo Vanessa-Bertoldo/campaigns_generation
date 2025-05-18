@@ -10,10 +10,10 @@ import {
   HttpCode,
   HttpStatus
 } from '@nestjs/common';
-import { CampaignsService } from './campaigns.service';
-import { UpdateCampaignDto } from './dto/update-campaign.dto';
-import { CreateCampaignDto } from './dto/create-campaing.dto';
-import { FilterCampaignDto } from './dto/filter-campaing.dto';
+import { CampaignsService } from '../service/campaigns.service';
+import { UpdateCampaignDto } from '../dto/update-campaign.dto';
+import { CreateCampaignDto } from '../dto/create-campaing.dto';
+import { FilterCampaignDto } from '../dto/filter-campaing.dto';
 
 @Controller('campaigns')
 export class CampaignsController {

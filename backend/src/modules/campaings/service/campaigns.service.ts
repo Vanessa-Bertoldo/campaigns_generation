@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UpdateCampaignDto } from './dto/update-campaign.dto';
-import { CreateCampaignDto } from './dto/create-campaing.dto';
-import { Campaign } from './entities/campanha.entity';
-import { FilterCampaignDto } from './dto/filter-campaing.dto';
+import { UpdateCampaignDto } from '../dto/update-campaign.dto';
+import { CreateCampaignDto } from '../dto/create-campaing.dto';
+import { Campaign } from '../entities/campanha.entity';
+import { FilterCampaignDto } from '../dto/filter-campaing.dto';
 
 @Injectable()
 export class CampaignsService {
@@ -65,12 +65,14 @@ export class CampaignsService {
 
 
   async update(id: number, updateDto: UpdateCampaignDto): Promise<Campaign> {
-    const campaign = await this.findOne(id);
-    Object.assign(campaign, updateDto);
-    return this.campaignRepository.save(campaign);
+    // const campaign = await this.findOne(id);
+    // Object.assign(campaign, updateDto);
+    // return this.campaignRepository.save(campaign);
+    await this.campaignRepository.update(id, updateDto);
+    return this.findOne(id);
   }
 
   async remove(id: number): Promise<void> {
     await this.campaignRepository.update(id, { indexcluido: true });
-    }
+  }
 }

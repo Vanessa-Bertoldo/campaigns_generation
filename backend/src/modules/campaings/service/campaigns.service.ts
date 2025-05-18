@@ -89,6 +89,10 @@ export class CampaignsService {
 
 
   async remove(id: number): Promise<{ message: string }> {
+    const campaign = await this.findOne(id);
+    if (!campaign) {
+      throw new NotFoundException(`Campanha não encontrada`);
+    }
     await this.campaignRepository.update(id, { indexcluido: true });
     
     return { message: 'Campanha excluída com sucesso.' };

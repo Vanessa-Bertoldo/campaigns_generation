@@ -17,7 +17,7 @@ Este projeto é uma API RESTful construída com NestJS e TypeORM para gerenciar 
 
 1. Clone o repositório:
 ```bash
-git clone <seu-repositorio>
+gh repo clone Vanessa-Bertoldo/campaigns_generation
 cd backend
 ```
 

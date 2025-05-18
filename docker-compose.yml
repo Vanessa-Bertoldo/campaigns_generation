@@ -1,0 +1,47 @@
+# Remova:
+# container_name: campanhas-api
+
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: bancoTeste@2025
+      POSTGRES_DB: campanha
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - campanhas-net
+
+  backend:
+    build:
+      context: ./backend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: bancoTeste@2025
+      DB_NAME: campanha
+    networks:
+      - campanhas-net
+    command: npm run start:dev
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:
+
+networks:
+  campanhas-net:
+    driver: bridge

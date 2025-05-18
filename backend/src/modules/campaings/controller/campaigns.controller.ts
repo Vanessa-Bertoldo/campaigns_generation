@@ -6,9 +6,7 @@ import {
   Delete,
   Param,
   Body,
-  ParseIntPipe,
-  HttpCode,
-  HttpStatus
+  ParseIntPipe
 } from '@nestjs/common';
 import { CampaignsService } from '../service/campaigns.service';
 import { UpdateCampaignDto } from '../dto/update-campaign.dto';
@@ -45,8 +43,7 @@ export class CampaignsController {
   }
 
   @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
   async remove(@Param('id', ParseIntPipe) id: number) {
-    await this.campaignsService.remove(id);
+    return await this.campaignsService.remove(id);
   }
 }

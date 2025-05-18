@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateCampaignDto } from '../dto/update-campaign.dto';
@@ -44,7 +44,7 @@ export class CampaignsService {
     page: number;
     limit: number;
   }> {
-    const { nome, dataInicio, dataFim, page = 1, limit = 10 } = filters;
+    const { nome, dataInicio, dataFim, status, page = 1, limit = 10 } = filters;
 
     const query = this.campaignRepository.createQueryBuilder('campaign');
 
@@ -60,6 +60,12 @@ export class CampaignsService {
       query.andWhere('campaign.dataFim <= :dataFim', { dataFim });
     }
 
+    if(status) {
+      query.andWhere('campaign.status = :status', { status });
+    }
+
+    query.andWhere('campaign.indexcluido = false');
+
     query.skip((page - 1) * limit).take(limit);
 
     const [data, total] = await query.getManyAndCount();
@@ -67,13 +73,25 @@ export class CampaignsService {
     return { data, total, page, limit };
   }
 
-
   async update(id: number, updateDto: UpdateCampaignDto): Promise<Campaign> {
+    const campanhaAtual = await this.findOne(id);
+
+    const dataInicio = updateDto.dataInicio ? new Date(updateDto.dataInicio) : new Date(campanhaAtual.dataInicio);
+    const dataFim = updateDto.dataFim ? new Date(updateDto.dataFim) : new Date(campanhaAtual.dataFim);
+
+    if (dataFim <= dataInicio) {
+      throw new BadRequestException('A data final deve ser maior que a data de início.');
+    }
+
     await this.campaignRepository.update(id, updateDto);
     return this.findOne(id);
   }
 
-  async remove(id: number): Promise<void> {
+
+  async remove(id: number): Promise<{ message: string }> {
     await this.campaignRepository.update(id, { indexcluido: true });
+    
+    return { message: 'Campanha excluída com sucesso.' };
   }
+
 }

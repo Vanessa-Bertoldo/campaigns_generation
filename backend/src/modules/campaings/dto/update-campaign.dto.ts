@@ -13,11 +13,11 @@ export class UpdateCampaignDto {
 
   @IsOptional()
   @IsDateString()
-  dataInicio?: string;
+  dataInicio?: Date;
 
   @IsOptional()
   @IsDateString()
-  dataFim?: string;
+  dataFim?: Date;
 
   @IsOptional()
   @IsEnum(CampaignStatus)

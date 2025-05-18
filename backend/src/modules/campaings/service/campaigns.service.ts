@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateCampaignDto } from '../dto/update-campaign.dto';
 import { CreateCampaignDto } from '../dto/create-campaing.dto';
-import { Campaign } from '../entities/campanha.entity';
+import { Campaign, CampaignStatus } from '../entities/campanha.entity';
 import { FilterCampaignDto } from '../dto/filter-campaing.dto';
 
 @Injectable()
@@ -15,6 +15,10 @@ export class CampaignsService {
 
   async create(createDto: CreateCampaignDto): Promise<Campaign> {
     const campaign = this.campaignRepository.create(createDto);
+
+    if (new Date(campaign.dataFim) < new Date()) {
+      campaign.status = CampaignStatus.EXPIRADA;
+    }
     return await this.campaignRepository.save(campaign);
   }
 

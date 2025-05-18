@@ -35,7 +35,7 @@ describe('CampaignController', () => {
     })
 
     it('must create a new campaing', async() => {
-        const dto: CreateCampaignDto = { nome: 'Nova Campanha', dataInicio: '2023-01-01', dataFim: '2023-12-31', indexcluido: false, status: CampaignStatus.ATIVA, categoria: CampaignCategory.PROMOCAO };
+        const dto: CreateCampaignDto = { nome: 'Nova Campanha', dataInicio: new Date('2023-01-01'), dataFim: new Date('2023-12-31'), indexcluido: false, status: CampaignStatus.ATIVA, categoria: CampaignCategory.PROMOCAO };
         expect(await controller.create(dto)).toEqual({ id: 1, nome: 'Nova Campanha' });
     })
 

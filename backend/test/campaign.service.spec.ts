@@ -40,7 +40,7 @@ describe('CampaignService', () => {
     });
 
     it('must create a new compaign', async() => {
-        const dto: CreateCampaignDto = { nome: 'Nova Campanha', dataInicio: '2023-01-01', dataFim: '2023-12-31', indexcluido: false, status: CampaignStatus.ATIVA, categoria: CampaignCategory.PROMOCAO };
+        const dto: CreateCampaignDto = { nome: 'Nova Campanha', dataInicio: new Date('2023-01-01'), dataFim: new Date('2023-12-31'), indexcluido: false, status: CampaignStatus.ATIVA, categoria: CampaignCategory.PROMOCAO };
         await service.create(dto);
         expect(mockRepo.create).toHaveBeenCalledWith(dto);
         expect(mockRepo.save).toHaveBeenCalled();
@@ -59,7 +59,7 @@ describe('CampaignService', () => {
     })
 
     it('must update a campaing', async() => {
-        const dto: UpdateCampaignDto = { nome: 'Atualizada', dataFim: '2023-12-31', };
+        const dto: UpdateCampaignDto = { nome: 'Atualizada', dataFim: new Date('2023-12-31'), };
         await service.update(1, dto);
         expect(mockRepo.update).toHaveBeenCalledWith(1, dto);
     })

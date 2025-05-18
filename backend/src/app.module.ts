@@ -1,3 +1,4 @@
+import { ScheduleModule } from '@nestjs/schedule';
 import { Module, OnModuleInit } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -8,7 +9,9 @@ import { CampaignsModule } from './modules/campaings/campaigns.module';
 @Module({
   imports: [
     DatabaseModule,
-    CampaignsModule
+    CampaignsModule,
+    ScheduleModule.forRoot(),
+
   ],
   controllers: [AppController],
   providers: [AppService],

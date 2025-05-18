@@ -59,7 +59,7 @@ describe('CampaignService', () => {
     })
 
     it('must update a campaing', async() => {
-        const dto: UpdateCampaignDto = { nome: 'Atualizada', dataFim: new Date('2023-12-31'), };
+        const dto: UpdateCampaignDto = { nome: 'Atualizada', dataFim: new Date('2028-12-31'), };
         await service.update(1, dto);
         expect(mockRepo.update).toHaveBeenCalledWith(1, dto);
     })

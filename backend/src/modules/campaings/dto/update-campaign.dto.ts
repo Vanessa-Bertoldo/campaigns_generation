@@ -16,14 +16,14 @@ export class UpdateCampaignDto {
   @IsOptional()
   @IsDateString()
   @IsFutureOrToday({ message: 'A data de início deve ser maior ou igual a data atual' })
-  dataInicio!: Date;
+  dataInicio?: Date;
 
   @IsOptional()
   @IsDateString()
   @IsDateFinalLargerThanDataInicioValidation({
     message: 'A data final deve ser maior que a data de início',
   })
-  dataFim!: Date;
+  dataFim?: Date;
 
   @IsOptional()
   @IsEnum(CampaignStatus)

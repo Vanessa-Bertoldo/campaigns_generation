@@ -92,4 +92,4 @@ A aplicação executa automaticamente um job todo dia à meia-noite (00:00) que 
 
 ---
 
-Para dúvidas ou contribuições, entre em contato com o time de desenvolvimento.
+Para dúvidas ou contribuições, 🔗 [entre em contato](https://github.com/Vanessa-Bertoldo)

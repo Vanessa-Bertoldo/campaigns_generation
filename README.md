@@ -66,7 +66,7 @@ npm run start:dev
 O arquivo de collection do Postman está localizado em:
 
 ```
-/assets/app campaings.postman_collection.json
+backend/assets/app campaings.postman_collection.json
 ```
 
 ### Como importar:
